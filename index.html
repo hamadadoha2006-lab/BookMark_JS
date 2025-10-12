@@ -45,12 +45,12 @@
             <label for="bookmarkName" class="pb-2 fw-semibold">
               <i class="fa-solid fa-book-bookmark pe-2"></i>
               Site Name</label>
-            <input type="text" placeholder="Bookmark Name" class="form-control" id="bookmarkName">
+            <input type="text" placeholder="Bookmark Name" class="form-control" id="bookmarkName" oninput="validation(regex.nameRegex,this);">
           </div>
     <div class="site-url w-100 d-flex flex-column justify-content-center">
             <label for="bookmarkURL" class="pb-2 fw-semibold">
               <i class="fa-solid fa-link pe-2"></i>Site URL</label>
-            <input type="url" placeholder="Website URL" class="form-control" id="bookmarkURL">
+            <input type="url" placeholder="Website URL" class="form-control" id="bookmarkURL" oninput="validation(regex.urlRegex,this);">
           </div>
           <button onclick="addSite()" class="btn text-white px-5" type="submit">Submit</button>
       </div>
@@ -69,6 +69,7 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./java script/main.js"></script>
   </body>
 </html>

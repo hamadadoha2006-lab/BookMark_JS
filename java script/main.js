@@ -6,7 +6,8 @@ if( localStorage.getItem("siteList")){
     display();
 }
 function addSite(){
-    var site={
+if(validation(regex.nameRegex,siteName) && validation(regex.urlRegex,siteUrl)){
+  var site={
     name:siteName.value,
     URL:siteUrl.value,
 };
@@ -14,12 +15,24 @@ siteList.push(site);
 localStorage.setItem("siteList",JSON.stringify(siteList));
 display();
 reset();
+    
 
+}
+else{
+Swal.fire({
+  icon: "error",
+  title: "Error",
+  text: ` the first chrscter is capital && Enter more than 3 character in siteName  && Enter valid URL`,
+});
+}
 
 }
 function reset() {
     siteName.value="";
     siteUrl.value="";
+    siteName.classList.remove("is-valid");
+    siteUrl.classList.remove("is-valid");
+
 }
 function display(){
     var cartona="";
@@ -53,4 +66,20 @@ function deleteSite(_index){
 function visitSite(index){
     
         window.open(siteList[index].URL,"_blank");
+}
+var regex={
+  nameRegex:/^[A-Z][a-z]{2,}$/,
+  urlRegex:/^(ftp|http|https):\/\/[^ "]+$/,
+}
+function validation(regex,_siteInput){
+  if(regex.test(_siteInput.value)){
+    _siteInput.classList.add("is-valid");
+    _siteInput.classList.remove("is-invalid");
+    return true;
+  }
+  else{
+    _siteInput.classList.add("is-invalid");
+    _siteInput.classList.remove("is-valid");
+    return false;
+  }
 }
